@@ -1,0 +1,135 @@
+# depslib dependency file v1.0
+1323908889 source:/home/leonsbuddydave/Projects/OCR - Math/main.cpp
+	<iostream>
+	"cv.h"
+	"cvblobs/BlobResult.h"
+	"cvblobs/blob.h"
+	"highgui.h"
+	"math.h"
+	<vector>
+	<boost/filesystem.hpp>
+
+1270517080 /usr/include/opencv/cv.h
+	<chdl.h>
+	"cxcore.h"
+	"cvtypes.h"
+	"cv.hpp"
+	"cvcompat.h"
+
+1270517080 /usr/include/opencv/cxcore.h
+	"ipl.h"
+	"ipl/ipl.h"
+	"cxtypes.h"
+	"cxerror.h"
+	"cvver.h"
+	"cxcore.hpp"
+
+1270517080 /usr/include/opencv/cxtypes.h
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	<float.h>
+	<stdint.h>
+	<intrin.h>
+	<emmintrin.h>
+	<fastmath.h>
+	<math.h>
+	<ipl.h>
+	<ipl/ipl.h>
+
+1270517080 /usr/include/opencv/cxerror.h
+
+1270517080 /usr/include/opencv/cvver.h
+
+1316061869 /usr/include/opencv/cxcore.hpp
+	"cxmisc.h"
+	<algorithm>
+	<cmath>
+	<cstddef>
+	<complex>
+	<map>
+	<new>
+	<string>
+	<vector>
+	"cxoperations.hpp"
+	"cxmat.hpp"
+	"cxflann.h"
+
+1270517080 /usr/include/opencv/cxmisc.h
+	<limits.h>
+	<malloc.h>
+	<alloca.h>
+	<stdlib.h>
+
+1270517080 /usr/include/opencv/cxoperations.hpp
+	<string.h>
+	<limits.h>
+	<ext/atomicity.h>
+	<bits/atomicity.h>
+	"windows.h"
+
+1270517080 /usr/include/opencv/cxmat.hpp
+	<limits.h>
+
+1270517080 /usr/include/opencv/cxflann.h
+
+1270517080 /usr/include/opencv/cvtypes.h
+	<assert.h>
+	<stdlib.h>
+
+1270517080 /usr/include/opencv/cv.hpp
+
+1270517080 /usr/include/opencv/cvcompat.h
+	<string.h>
+
+1270517080 /usr/include/opencv/highgui.h
+	"cxcore.h"
+	<windows.h>
+	<chdl.h>
+	"highgui.hpp"
+
+1270517080 /usr/include/opencv/highgui.hpp
+
+1323932616 source:/home/leonsbuddydave/Optical-Content-Recognition-Testing/cpp-implementation/ImageMethods.cpp
+	"ImageMethods.h"
+
+1324002188 /home/leonsbuddydave/Optical-Content-Recognition-Testing/cpp-implementation/ImageMethods.h
+	<iostream>
+	"cv.h"
+	"cvblobs/BlobResult.h"
+	"cvblobs/blob.h"
+	"highgui.h"
+	"math.h"
+	<vector>
+
+1324003017 source:/home/leonsbuddydave/Optical-Content-Recognition-Testing/cpp-implementation/main.cpp
+	<iostream>
+	"Teacher.h"
+
+1324002539 /home/leonsbuddydave/Optical-Content-Recognition-Testing/cpp-implementation/Teacher.h
+	"ImageMethods.h"
+	<boost/filesystem.hpp>
+
+1324005021 source:/home/leonsbuddydave/Optical-Content-Recognition-Testing/cpp-implementation/Teacher.cpp
+	"Teacher.h"
+
+1323932616 source:/home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.cpp
+	"ImageMethods.h"
+
+1324002188 /home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.h
+	<iostream>
+	"cv.h"
+	"cvblobs/BlobResult.h"
+	"cvblobs/blob.h"
+	"highgui.h"
+	"math.h"
+	<vector>
+
+1324003017 source:/home/leonsbuddydave/OCRMath/cpp-implementation/main.cpp
+	<iostream>
+	"Teacher.h"
+
+1324002539 /home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.h
+	"ImageMethods.h"
+	<boost/filesystem.hpp>
+
