@@ -3,6 +3,8 @@
 ///////////////////////////////
 python-tests
 	Teacher.py
+
+	*** NOTE: Has a dependency on the Python Image Library (PIL) ***
 	
 	Collects source images from the folders in the root python-tests directory and averages them into a single image as well as a point-cloud representation. Averaged points will later be used for recognizing these characters in another context. Output images and point cloud text file are saved in "python-tests/output/<symbol-folder-name>_proc/". See source of Teacher.py for function documentation.
 
