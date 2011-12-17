@@ -27,6 +27,33 @@ IplImage* ImageMethods::PrepareImage(IplImage* Source)
 	return NewSize;
 }
 
+IplImage* ImageMethods::CropLargestBlob(IplImage* Source)
+{
+	IplImage* LabelImage = cvCreateImage(cvGetSize(Source), IPL_DEPTH_LABEL, 1);
+	CvBlobs Blobs;
+	unsigned int Result = cvLabel(Source, LabelImage, Blobs);
+
+
+	CvBlob* BiggestBlob = Blobs[cvGreaterBlob(Blobs)];
+
+	return CropOutBlob(Source, BiggestBlob);
+}
+
+IplImage* ImageMethods::CropOutBlob(IplImage* Source, CvBlob* Blob)
+{
+	cout << "Largest region is " << Blob->maxx - Blob->minx << "x" << Blob->maxy - Blob->miny << endl;
+	IplImage* CroppedBlob = cvCreateImage( cvSize( Blob->maxx - Blob->minx, Blob->maxy - Blob->miny ), IPL_DEPTH_8U, 1);
+
+	CvRect ROI = cvRect( Blob->minx, Blob->miny, Blob->maxx - Blob->minx, Blob->maxy - Blob->miny );
+
+	cvSetImageROI(Source, ROI);
+
+	cvCopy(Source, CroppedBlob);
+	cvResetImageROI(Source);
+
+	return CroppedBlob;
+}
+
 IplImage* ImageMethods::Threshold(IplImage* Source)
 {
 	uchar* PixelData = (uchar *)Source->imageData;
@@ -40,7 +67,7 @@ IplImage* ImageMethods::Threshold(IplImage* Source)
 	{
 		for (int j = 0; j < Width; j++)
 		{
-			PixelData[i * Step + j] = (PixelData[i * Step + j] < 80 ? 0 : 255);
+			PixelData[i * Step + j] = (PixelData[i * Step + j] > 120 ? 0 : 255);
 		}
 	}
 

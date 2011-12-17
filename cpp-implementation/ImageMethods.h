@@ -1,16 +1,16 @@
 #include <iostream>
 
 #include "cv.h"
-#include "cvblobs/BlobResult.h"
-#include "cvblobs/blob.h"
+#include "cvblob.h"
 
 #include "highgui.h"
 #include "math.h"
 #include <vector>
 
 using namespace std;
+using namespace cvb;
 
-class ImageMethods 
+class ImageMethods
 {
 	public:
 		ImageMethods();
@@ -21,5 +21,7 @@ class ImageMethods
 
 		IplImage * PrepareImage(IplImage*);
 		IplImage * Threshold(IplImage*);
-		vector< vector<int> > ConvertImageTo2DArray(IplImage*);	
+		IplImage * CropLargestBlob(IplImage*);
+		IplImage * CropOutBlob(IplImage*, CvBlob*);
+		vector< vector<int> > ConvertImageTo2DArray(IplImage*);
 };

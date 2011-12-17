@@ -11,13 +11,13 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="~/Optical-Content-Recognition-Testing/0/IMAG0106.jpg" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`pkg-config opencv --cflags`" />
 				</Compiler>
 				<Linker>
 					<Add option="`pkg-config opencv --libs`" />
+					<Add option="`pkg-config opencv cvblob --cflags --libs`" />
 					<Add option="-lboost_filesystem" />
 					<Add option="-lboost_system" />
 				</Linker>
@@ -41,6 +41,7 @@
 		</Compiler>
 		<Unit filename="ImageMethods.cpp" />
 		<Unit filename="ImageMethods.h" />
+		<Unit filename="Teacher.cpp" />
 		<Unit filename="Teacher.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

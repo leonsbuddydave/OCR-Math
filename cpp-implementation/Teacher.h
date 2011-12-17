@@ -2,8 +2,10 @@
 
 
 #include <boost/filesystem.hpp>
+#include <iostream>
 
 using namespace boost::filesystem;
+using namespace std;
 
 class Teacher : public ImageMethods
 {
