@@ -11,9 +11,8 @@ python-tests
 //////////////////////////////
 cpp-implementation
 
-	Work in progress of a port of the existing Python code to C++ using OpenCV. OpenCV must be installed for this to work. The CodeBlocks file has several dependencies currently (including OpenCV and CVBlob) and the port is not yet complete. While most of the methods have been ported, all it currently does is find all the images in the learning directories and displays the file paths without performing any operations.
-	If those dependencies are available, it will compile (debug only) but there's currently no real point to it. 
-
+	Work in progress of a port of the existing Python code to C++ using OpenCV. OpenCV must be installed for this to work. The CodeBlocks file has several dependencies currently (including OpenCV and CVBlob) and the port is not yet complete. 
+	Most of the methods have been ported from the Python version. It currently scans all the directories where learning images will be and processes/renames/moves them into the appropriate output directory based on the input directory filename. Output image will be an inverted binary version of the original, cropped to the largest contiguous region. 
 
 
 /////////////////////////////
@@ -21,4 +20,4 @@ cpp-implementation
 TODO:
  -- Finish C++ port of existing code.
  -- Add command line parameters to process single directories at a time to simplify debugging later.
- -- Refactor several image manipulation methods into a superclass - both the Teacher and the image interpreter classes will need to derive and use them. (partially done)
+ -- Analysis and point-cloud conversion in teaching class. 
