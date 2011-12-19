@@ -67,7 +67,7 @@ IplImage* ImageMethods::Threshold(IplImage* Source)
 	{
 		for (int j = 0; j < Width; j++)
 		{
-			PixelData[i * Step + j] = (PixelData[i * Step + j] > 120 ? 0 : 255);
+			PixelData[i * Step + j] = (PixelData[i * Step + j] > 80 ? 0 : 255);
 		}
 	}
 
@@ -93,4 +93,14 @@ vector< vector<int> > ImageMethods::ConvertImageTo2DArray(IplImage* Source)
 		}
 		ImageGrid.push_back(Row);
 	}
+}
+
+IplImage* ImageMethods::ConvertToSquare(IplImage* Source, int Side)
+{	
+	// Create scaled-down destination to copy to
+	IplImage* Square = cvCreateImage( cvSize(Side, Side), IPL_DEPTH_8U, 1);
+
+	cvResize(Source, Square, CV_INTER_LINEAR);
+
+	return Square;
 }

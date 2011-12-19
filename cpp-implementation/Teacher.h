@@ -14,6 +14,7 @@ class Teacher : public ImageMethods
 		~Teacher();
 		void Learn();
 	private:
+		void AddImageToPixelCount(IplImage*, vector< vector<int> >&);
 	protected:
 
 };

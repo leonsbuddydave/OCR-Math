@@ -23,5 +23,7 @@ class ImageMethods
 		IplImage * Threshold(IplImage*);
 		IplImage * CropLargestBlob(IplImage*);
 		IplImage * CropOutBlob(IplImage*, CvBlob*);
+		IplImage * ConvertToSquare(IplImage*, int Side);
+
 		vector< vector<int> > ConvertImageTo2DArray(IplImage*);
 };

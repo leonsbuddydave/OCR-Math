@@ -12,8 +12,7 @@ Teacher::~Teacher()
 
 void Teacher::Learn()
 {
-    // Bring me the horizon
-
+	// Bring me the horizon
 	path LearningPath("./sourceimages");
 
 	if (!exists("./output"))
@@ -34,6 +33,17 @@ void Teacher::Learn()
 			path OutputDirectory("./output/" + SymbolDirectory + "_proc");
 
 
+			vector< vector<int> > PixelAppearanceRate;
+			for (int i = 0; i < 300; i++)
+			{
+				vector<int> Row;
+				for (int j = 0; j < 300; j++)
+				{
+					Row.push_back(0);
+				}
+				PixelAppearanceRate.push_back(Row);			
+			}
+
 
 			directory_iterator inner_end_it;
 			for (directory_iterator innerIt(it->path()); innerIt != inner_end_it; ++innerIt)
@@ -43,11 +53,14 @@ void Teacher::Learn()
 					if (!exists(OutputDirectory))
 					{
 						create_directory(OutputDirectory);
-					}
+					}					
+					
+	
 					cout << "Image found: " << innerIt->path() << endl;
 
 
 					IplImage* SourceImage = cvLoadImage(innerIt->path().c_str());
+					
 
 					cvNamedWindow("Image", 1);
 
@@ -55,19 +68,33 @@ void Teacher::Learn()
 
 					SourceImage = Threshold(SourceImage);
 
-					cvShowImage("Image", SourceImage);
-					cvWaitKey(0);
-
 					SourceImage = CropLargestBlob(SourceImage);
 
-					cvShowImage("Image", SourceImage);
-					cvWaitKey(0);
+					SourceImage = ConvertToSquare(SourceImage, 300);
+
+					AddImageToPixelCount(SourceImage, PixelAppearanceRate);
 
 					cvSaveImage((OutputDirectory / innerIt->path().filename()).c_str(), SourceImage);
 				}
 			}
-
-
 		}
 	}
+}
+
+void Teacher::AddImageToPixelCount(IplImage* Source, vector< vector<int> >& PixelAppearanceRate)
+{
+	const uchar* PixelData = (uchar*)Source->imageData;
+
+	const int Width = Source->width;
+	const int Height = Source->height;
+	const int Step = Source->widthStep;
+
+	for (int i = 0; i < Height; i++)
+	{
+		for (int j = 0; j < Width; j++)
+		{
+			PixelAppearanceRate[i][j] += (PixelData[i * Step + j] == 255 ? 1 : 0);
+		}
+	}
+	cout << PixelAppearanceRate.size() << endl;	
 }

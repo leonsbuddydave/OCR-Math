@@ -18,6 +18,5 @@ cpp-implementation
 /////////////////////////////
 
 TODO:
- -- Finish C++ port of existing code.
  -- Add command line parameters to process single directories at a time to simplify debugging later.
  -- Analysis and point-cloud conversion in teaching class. 
