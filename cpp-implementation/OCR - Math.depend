@@ -113,10 +113,10 @@
 1324005021 source:/home/leonsbuddydave/Optical-Content-Recognition-Testing/cpp-implementation/Teacher.cpp
 	"Teacher.h"
 
-1324245691 source:/home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.cpp
+1324451491 source:/home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.cpp
 	"ImageMethods.h"
 
-1324247331 /home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.h
+1324445287 /home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.h
 	<iostream>
 	"cv.h"
 	"cvblob.h"
@@ -128,12 +128,12 @@
 	<iostream>
 	"Teacher.h"
 
-1324247923 /home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.h
+1324445283 /home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.h
 	"ImageMethods.h"
 	<boost/filesystem.hpp>
-	<iostream>
+	<fstream>
 
-1324268156 source:/home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.cpp
+1324435862 source:/home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.cpp
 	"Teacher.h"
 
 1310544769 /home/leonsbuddydave/OCRMath/cpp-implementation/cvblobs/blob.h

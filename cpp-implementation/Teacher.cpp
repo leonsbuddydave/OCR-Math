@@ -33,6 +33,7 @@ void Teacher::Learn()
 			path OutputDirectory("./output/" + SymbolDirectory + "_proc");
 
 
+			int TotalImagesInDirectory = 0;
 			vector< vector<int> > PixelAppearanceRate;
 			for (int i = 0; i < 300; i++)
 			{
@@ -40,8 +41,8 @@ void Teacher::Learn()
 				for (int j = 0; j < 300; j++)
 				{
 					Row.push_back(0);
-				}
-				PixelAppearanceRate.push_back(Row);			
+			}
+				PixelAppearanceRate.push_back(Row);
 			}
 
 
@@ -53,18 +54,18 @@ void Teacher::Learn()
 					if (!exists(OutputDirectory))
 					{
 						create_directory(OutputDirectory);
-					}					
-					
-	
+					}
+
+
 					cout << "Image found: " << innerIt->path() << endl;
 
 
 					IplImage* SourceImage = cvLoadImage(innerIt->path().c_str());
-					
+
 
 					cvNamedWindow("Image", 1);
 
-					SourceImage = PrepareImage(SourceImage);	
+					SourceImage = PrepareImage(SourceImage);
 
 					SourceImage = Threshold(SourceImage);
 
@@ -75,8 +76,12 @@ void Teacher::Learn()
 					AddImageToPixelCount(SourceImage, PixelAppearanceRate);
 
 					cvSaveImage((OutputDirectory / innerIt->path().filename()).c_str(), SourceImage);
+
+					TotalImagesInDirectory++;
 				}
 			}
+			BuildPointCloudFile(PixelAppearanceRate, (OutputDirectory / SymbolDirectory).c_str(), TotalImagesInDirectory);
+			BuildAverageImage(PixelAppearanceRate, (OutputDirectory / "Average.png").c_str(), TotalImagesInDirectory);
 		}
 	}
 }
@@ -96,5 +101,61 @@ void Teacher::AddImageToPixelCount(IplImage* Source, vector< vector<int> >& Pixe
 			PixelAppearanceRate[i][j] += (PixelData[i * Step + j] == 255 ? 1 : 0);
 		}
 	}
-	cout << PixelAppearanceRate.size() << endl;	
+}
+
+void Teacher::BuildAverageImage(vector< vector<int> >& PixelAppearanceRate, string FilePath, int TotalImagesProcessed)
+{
+
+	IplImage* Destination = cvCreateImage(cvSize(PixelAppearanceRate.size(), PixelAppearanceRate[0].size()), IPL_DEPTH_8U, 1);
+
+	cvSet(Destination, CV_RGB(0, 0, 0));
+
+	uchar* PixelData = (uchar*)Destination->imageData;
+	int Step = Destination->widthStep;
+
+	for (int i = 0; i < PixelAppearanceRate.size(); i++)
+	{
+		for (int j = 0; j < PixelAppearanceRate[i].size(); j++)
+		{
+			if( (i * j) % DatasetTrimThreshold == 0 ) // Only using every Nth point
+			{
+				cout << PixelAppearanceRate[i][j] << endl;
+				if ((double)(PixelAppearanceRate[i][j] / (double)TotalImagesProcessed * 100.0) > PixelTolerance) // Pixel has to be common
+				{
+					PixelData[i * Step + j] = 255;
+				}
+				else
+				{
+					PixelData[i * Step + j] = 0;
+				}
+			}
+		}
+	}
+
+	cout << "Average is saved at " << FilePath.c_str() << endl;
+	cvSaveImage(FilePath.c_str(), Destination);
+	cvReleaseImage(&Destination);
+}
+
+void Teacher::BuildPointCloudFile(vector< vector<int> >& PixelAppearanceRate, string FilePath, int TotalImagesProcessed)
+{
+	ofstream PointCloudFile;
+	PointCloudFile.open((FilePath + ".txt").c_str());
+	cout << "Saving point cloud file to " << FilePath << endl;
+	for (int i = 0; i < PixelAppearanceRate.size(); i++)
+	{
+		for (int j = 0; j < PixelAppearanceRate[i].size(); j++)
+		{
+			if( (i * j) % DatasetTrimThreshold == 0 ) // Only using every Nth point
+			{
+				cout << PixelAppearanceRate[i][j] << endl;
+				if ((double)(PixelAppearanceRate[i][j] / (double)TotalImagesProcessed * 100.0) > PixelTolerance) // Pixel has to be common
+				{
+					cout << "Pixel tolerance!" << endl;
+					PointCloudFile << i << "," << j << endl;
+				}
+			}
+		}
+	}
+	PointCloudFile.close();
 }

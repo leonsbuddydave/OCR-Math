@@ -12,6 +12,9 @@ ImageMethods::~ImageMethods()
 
 IplImage* ImageMethods::PrepareImage(IplImage* Source)
 {
+	/*
+	* Source: The input image to be processed for use
+	*/
 	int Width = Source->width;
 	int Height = Source->height;
 
@@ -29,10 +32,12 @@ IplImage* ImageMethods::PrepareImage(IplImage* Source)
 
 IplImage* ImageMethods::CropLargestBlob(IplImage* Source)
 {
+	/*
+	* Source: The input image to pull the largest contiguous blob from
+	*/
 	IplImage* LabelImage = cvCreateImage(cvGetSize(Source), IPL_DEPTH_LABEL, 1);
 	CvBlobs Blobs;
 	unsigned int Result = cvLabel(Source, LabelImage, Blobs);
-
 
 	CvBlob* BiggestBlob = Blobs[cvGreaterBlob(Blobs)];
 
@@ -41,7 +46,11 @@ IplImage* ImageMethods::CropLargestBlob(IplImage* Source)
 
 IplImage* ImageMethods::CropOutBlob(IplImage* Source, CvBlob* Blob)
 {
-	cout << "Largest region is " << Blob->maxx - Blob->minx << "x" << Blob->maxy - Blob->miny << endl;
+	/*
+	* Source: The image to be pulled from
+	* Blob: The area to be pulled from the Source image
+	*/
+
 	IplImage* CroppedBlob = cvCreateImage( cvSize( Blob->maxx - Blob->minx, Blob->maxy - Blob->miny ), IPL_DEPTH_8U, 1);
 
 	CvRect ROI = cvRect( Blob->minx, Blob->miny, Blob->maxx - Blob->minx, Blob->maxy - Blob->miny );
@@ -56,6 +65,16 @@ IplImage* ImageMethods::CropOutBlob(IplImage* Source, CvBlob* Blob)
 
 IplImage* ImageMethods::Threshold(IplImage* Source)
 {
+	/*
+	* Source: The image to be binarized
+	*/
+	
+	/*
+	* Brilliant, Fantastic, Molto Bene, Great big universe, packed into my brain. You know you can fix that chameleon circuit 
+	* if you just try hotwiring the fragment links and superseding the binary binary binary binary binary binary binary binary 	
+	* binary binary binary binary binary binary binary 
+	*/
+
 	uchar* PixelData = (uchar *)Source->imageData;
 
 	const int Width = Source->width;

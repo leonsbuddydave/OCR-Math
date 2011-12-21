@@ -41,6 +41,8 @@
 		</Compiler>
 		<Unit filename="ImageMethods.cpp" />
 		<Unit filename="ImageMethods.h" />
+		<Unit filename="Interpreter.cpp" />
+		<Unit filename="Interpreter.h" />
 		<Unit filename="Teacher.cpp" />
 		<Unit filename="Teacher.h" />
 		<Unit filename="main.cpp" />
