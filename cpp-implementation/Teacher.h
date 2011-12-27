@@ -1,6 +1,4 @@
 #include "ImageMethods.h"
-
-
 #include <boost/filesystem.hpp>
 #include <fstream>
 
@@ -14,8 +12,8 @@ class Teacher : public ImageMethods
 		~Teacher();
 		void Learn();
 	private:
-		static const int PixelTolerance = 30; // Decides how common a pixel has to be to be incorporated into the average
-		static const int DatasetTrimThreshold = 1; // Decides how many reference pixels to keep for a domain of > 0 where 1 is all pixels.
+		static const int PixelTolerance = 20; // Decides how common a pixel has to be to be incorporated into the average
+		static const int DatasetTrimThreshold = 10; // Decides how many reference pixels to keep for a domain of > 0 where 1 is all pixels.
 
 		void AddImageToPixelCount(IplImage*, vector< vector<int> >&);
 		void BuildAverageImage(vector< vector<int> >&, string, int);

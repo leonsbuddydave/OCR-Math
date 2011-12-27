@@ -1,33 +1,40 @@
-#include <iostream>
-#include "Teacher.h"
+#include "main.h"
 
 using namespace std;
 
-void BlobShit(IplImage*);
-
 int main(int argc, char** argv)
 {
-	IplImage* pImg;
+	// Main variables
+	ServerModes Mode = TEACH;
+	char* InterpretFilepath = "";
 
-	Teacher teacher;
-	teacher.Learn();
+	IplImage* pImg;
+	if (argc > 1)
+	{
+		cout << "We have arguments!" << endl;
+		for (int i = 0; i < argc; i++)
+		{
+			cout << "Argv " << i << " is '" << argv[i] << "'" << endl;
+		}
+		if (string(argv[1]) == "-i")
+		{
+			Mode = INTERPRET;
+			InterpretFilepath = argv[2];
+		}
+	}
+
+	if (Mode == INTERPRET && string(InterpretFilepath) != "")
+	{
+		cout << "Interpreting input image." << endl;
+		Interpreter interpreter;
+		interpreter.Interpret(InterpretFilepath);
+	}
+	else
+	{
+		cout << "Learning from source images." << endl;
+		Teacher teacher;
+		teacher.Learn();
+	}
 
 	return 0;
 }
-
-/*
-void BlobShit(IplImage * Source)
-{
-	// Function for testing region differentiation
-	CBlobResult blobs;
-	blobs = CBlobResult(Source, NULL, 255);
-
-	CBlob biggestBlob;
-	blobs.GetNthBlob( CBlobGetArea(), 0, biggestBlob );
-
-	biggestBlob.FillBlob(Source, CV_RGB(100, 100, 100) );
-
-	cvShowImage("Image", Source);
-
-}
-*/

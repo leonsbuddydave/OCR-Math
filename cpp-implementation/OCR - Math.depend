@@ -116,7 +116,7 @@
 1324451491 source:/home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.cpp
 	"ImageMethods.h"
 
-1324445287 /home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.h
+1324515329 /home/leonsbuddydave/OCRMath/cpp-implementation/ImageMethods.h
 	<iostream>
 	"cv.h"
 	"cvblob.h"
@@ -124,16 +124,15 @@
 	"math.h"
 	<vector>
 
-1324003017 source:/home/leonsbuddydave/OCRMath/cpp-implementation/main.cpp
-	<iostream>
-	"Teacher.h"
+1324545114 source:/home/leonsbuddydave/OCRMath/cpp-implementation/main.cpp
+	"main.h"
 
-1324445283 /home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.h
+1324687215 /home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.h
 	"ImageMethods.h"
 	<boost/filesystem.hpp>
 	<fstream>
 
-1324435862 source:/home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.cpp
+1324778609 source:/home/leonsbuddydave/OCRMath/cpp-implementation/Teacher.cpp
 	"Teacher.h"
 
 1310544769 /home/leonsbuddydave/OCRMath/cpp-implementation/cvblobs/blob.h
@@ -2499,4 +2498,27 @@
 	<limits>
 	<cv.h>
 	<opencv/cv.h>
+
+1324805716 source:/home/leonsbuddydave/OCRMath/cpp-implementation/Interpreter.cpp
+	"Interpreter.h"
+
+1324789200 /home/leonsbuddydave/OCRMath/cpp-implementation/Interpreter.h
+	"ImageMethods.h"
+	"MethodsThatShouldBeStandard.h"
+	<boost/filesystem.hpp>
+	<fstream>
+	<sstream>
+	<stdlib.h>
+
+1324544881 /home/leonsbuddydave/OCRMath/cpp-implementation/main.h
+	<iostream>
+	"Teacher.h"
+	"Interpreter.h"
+
+1324782963 /home/leonsbuddydave/OCRMath/cpp-implementation/MethodsThatShouldBeStandard.h
+	<iostream>
+	<vector>
+
+1324788145 source:/home/leonsbuddydave/OCRMath/cpp-implementation/MethodsThatShouldBeStandard.cpp
+	"MethodsThatShouldBeStandard.h"
 

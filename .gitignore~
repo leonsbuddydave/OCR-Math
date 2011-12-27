@@ -1,3 +1,4 @@
 Thumbs.db
 output/
-0/temp/
+temp/
+*.swp

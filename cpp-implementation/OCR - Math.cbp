@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="-i /home/leonsbuddydave/testequation.jpg" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`pkg-config opencv --cflags`" />
@@ -43,6 +44,8 @@
 		<Unit filename="ImageMethods.h" />
 		<Unit filename="Interpreter.cpp" />
 		<Unit filename="Interpreter.h" />
+		<Unit filename="MethodsThatShouldBeStandard.cpp" />
+		<Unit filename="MethodsThatShouldBeStandard.h" />
 		<Unit filename="Teacher.cpp" />
 		<Unit filename="Teacher.h" />
 		<Unit filename="main.cpp" />

@@ -80,7 +80,8 @@ void Teacher::Learn()
 					TotalImagesInDirectory++;
 				}
 			}
-			BuildPointCloudFile(PixelAppearanceRate, (OutputDirectory / SymbolDirectory).c_str(), TotalImagesInDirectory);
+
+			BuildPointCloudFile(PixelAppearanceRate, (SymbolDirectory).c_str(), TotalImagesInDirectory);
 			BuildAverageImage(PixelAppearanceRate, (OutputDirectory / "Average.png").c_str(), TotalImagesInDirectory);
 		}
 	}
@@ -119,7 +120,6 @@ void Teacher::BuildAverageImage(vector< vector<int> >& PixelAppearanceRate, stri
 		{
 			if( (i * j) % DatasetTrimThreshold == 0 ) // Only using every Nth point
 			{
-				cout << PixelAppearanceRate[i][j] << endl;
 				if ((double)(PixelAppearanceRate[i][j] / (double)TotalImagesProcessed * 100.0) > PixelTolerance) // Pixel has to be common
 				{
 					PixelData[i * Step + j] = 255;
@@ -140,7 +140,7 @@ void Teacher::BuildAverageImage(vector< vector<int> >& PixelAppearanceRate, stri
 void Teacher::BuildPointCloudFile(vector< vector<int> >& PixelAppearanceRate, string FilePath, int TotalImagesProcessed)
 {
 	ofstream PointCloudFile;
-	PointCloudFile.open((FilePath + ".txt").c_str());
+	PointCloudFile.open(("./symbols/" + FilePath + ".txt").c_str());
 	cout << "Saving point cloud file to " << FilePath << endl;
 	for (int i = 0; i < PixelAppearanceRate.size(); i++)
 	{
@@ -148,10 +148,8 @@ void Teacher::BuildPointCloudFile(vector< vector<int> >& PixelAppearanceRate, st
 		{
 			if( (i * j) % DatasetTrimThreshold == 0 ) // Only using every Nth point
 			{
-				cout << PixelAppearanceRate[i][j] << endl;
 				if ((double)(PixelAppearanceRate[i][j] / (double)TotalImagesProcessed * 100.0) > PixelTolerance) // Pixel has to be common
 				{
-					cout << "Pixel tolerance!" << endl;
 					PointCloudFile << i << "," << j << endl;
 				}
 			}

@@ -10,6 +10,9 @@
 using namespace std;
 using namespace cvb;
 
+#ifndef IMAGEMETHODS_H
+#define IMAGEMETHODS_H
+
 class ImageMethods
 {
 	public:
@@ -27,3 +30,5 @@ class ImageMethods
 
 		vector< vector<int> > ConvertImageTo2DArray(IplImage*);
 };
+
+#endif

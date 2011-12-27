@@ -7,14 +7,17 @@
 	<File name="ImageMethods.h" open="1" top="0" tabpos="3">
 		<Cursor position="458" topLine="0" />
 	</File>
-	<File name="Interpreter.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="309" topLine="0" />
+	<File name="Interpreter.cpp" open="1" top="1" tabpos="8">
+		<Cursor position="1022" topLine="33" />
 	</File>
 	<File name="Interpreter.h" open="1" top="0" tabpos="6">
 		<Cursor position="85" topLine="0" />
 	</File>
+	<File name="MethodsThatShouldBeStandard.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="434" topLine="0" />
+	</File>
 	<File name="Teacher.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1148" topLine="6" />
+		<Cursor position="491" topLine="0" />
 	</File>
 	<File name="Teacher.h" open="1" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />

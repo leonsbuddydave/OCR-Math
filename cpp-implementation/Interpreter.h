@@ -1,6 +1,18 @@
 #include "ImageMethods.h"
+#include "MethodsThatShouldBeStandard.h"
 #include <boost/filesystem.hpp>
 #include <fstream>
+#include <sstream>
+#include <stdlib.h>
+
+struct Point
+{
+	int x;
+	int y;
+};
+
+using namespace boost::filesystem;
+using namespace std;
 
 class Interpreter : ImageMethods
 {
@@ -9,6 +21,10 @@ class Interpreter : ImageMethods
 		~Interpreter();
 		void Interpret(string);
 	private:
-		vector< IplImage* > ExtractAllSymbolBlobs(IplImage*);	
+		vector< IplImage* > AllSymbols;
+		vector< IplImage* > ExtractAllSymbolBlobs(IplImage*);
+		IplImage* PrepareImage(IplImage* Source);
+
+		bool SaveAllSymbols();
 	protected:
 };
