@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="-i /home/leonsbuddydave/testequation.jpg" />
+				<Option parameters="-i testequation.jpg" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`pkg-config opencv --cflags`" />

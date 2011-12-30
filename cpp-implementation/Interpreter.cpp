@@ -69,21 +69,28 @@ void Interpreter::Interpret(string FilePath)
 	for (vector<IplImage*>::iterator SymbolIterator = AllSymbols.begin(); SymbolIterator != AllSymbols.end(); ++SymbolIterator)
 	{
 		// Let's interpret all these images
-		const uchar* PixelData = (uchar*)(*SymbolIterator)->imageData;
+		uchar* PixelData = (uchar*)(*SymbolIterator)->imageData;
 		const int Width = (*SymbolIterator)->width;
 		const int Height = (*SymbolIterator)->height;
 		const int Step = (*SymbolIterator)->widthStep;
 
+		map<string, int> ConfidenceMap;
+
 		for (map<string, vector<Point> >::iterator PointListIterator = AllPointLists.begin(); PointListIterator != AllPointLists.end(); ++PointListIterator)
 		{
-			int TotalPoints = PointListIterator->second.size();
-			int PointsMatched = 0;
+			double TotalPoints = PointListIterator->second.size();
+			double PointsMatched = 0;
 
 			for (vector<Point>::iterator PointIterator = PointListIterator->second.begin(); PointIterator != PointListIterator->second.end(); ++PointIterator)
 			{	
 				// I got so wrapped up in writing the outer iterators that I can't remember what the hell goes here
-				PointsMatched += (PixelData[PointIterator->x * Step + PointIterator->y] == 255 ? 1 : 0);
+				// wait I figured it out
+				// PointsMatched += (PixelData[PointIterator->x * Step + PointIterator->y] == 255 ? 1 : 0);
+				// PixelData[PointIterator->x * Step + PointIterator->y] = (PixelData[PointIterator->x * Step + PointIterator->y] == 255 ? 100 : 0);
 			}
+
+			ConfidenceMap[PointListIterator->first] = static_cast<int>(PointsMatched / TotalPoints * 100);
+			cout << ConfidenceMap[PointListIterator->first] << "% chance of " << PointListIterator->first << endl;
 		}
 	}
 	
@@ -116,6 +123,7 @@ vector< IplImage* > Interpreter::ExtractAllSymbolBlobs(IplImage* Source)
 	// Crop out all the symbols, yeah
 	for (CvBlobs::const_iterator it = Blobs.begin(); it != Blobs.end(); ++it)
 	{
+		// AllBlobImages.push_back( ConvertToSquare( CropOutBlob(Source, it->second), 300) );
 		AllBlobImages.push_back( CropOutBlob(Source, it->second) );
 	}
 

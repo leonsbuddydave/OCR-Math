@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="ImageMethods.cpp" open="1" top="0" tabpos="4">
+	<File name="ImageMethods.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="2475" topLine="52" />
 	</File>
-	<File name="ImageMethods.h" open="1" top="0" tabpos="3">
+	<File name="ImageMethods.h" open="0" top="0" tabpos="3">
 		<Cursor position="458" topLine="0" />
 	</File>
-	<File name="Interpreter.cpp" open="1" top="1" tabpos="8">
-		<Cursor position="1022" topLine="33" />
+	<File name="Interpreter.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="1692" topLine="26" />
 	</File>
-	<File name="Interpreter.h" open="1" top="0" tabpos="6">
+	<File name="Interpreter.h" open="0" top="0" tabpos="6">
 		<Cursor position="85" topLine="0" />
 	</File>
-	<File name="MethodsThatShouldBeStandard.cpp" open="1" top="0" tabpos="7">
+	<File name="MethodsThatShouldBeStandard.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="434" topLine="0" />
 	</File>
-	<File name="Teacher.cpp" open="1" top="0" tabpos="2">
+	<File name="Teacher.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="491" topLine="0" />
 	</File>
-	<File name="Teacher.h" open="1" top="0" tabpos="5">
+	<File name="Teacher.h" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
+	<File name="main.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="533" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
