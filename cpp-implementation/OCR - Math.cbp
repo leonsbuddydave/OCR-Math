@@ -39,7 +39,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="/usr/local/lib" />
 		</Compiler>
+		<Linker>
+			<Add option="`pkg-config opencv --libs`" />
+			<Add option="`pkg-config opencv cvblob --cflags --libs`" />
+			<Add option="-lboost_filesystem" />
+			<Add option="-lboost_system" />
+		</Linker>
 		<Unit filename="ImageMethods.cpp" />
 		<Unit filename="ImageMethods.h" />
 		<Unit filename="Interpreter.cpp" />

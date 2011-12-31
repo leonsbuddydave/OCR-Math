@@ -20,6 +20,7 @@ class Interpreter : ImageMethods
 		Interpreter();
 		~Interpreter();
 		void Interpret(string);
+		void InterpretUsingAverageImages(string);
 	private:
 		vector< IplImage* > AllSymbols;
 		vector< IplImage* > ExtractAllSymbolBlobs(IplImage*);

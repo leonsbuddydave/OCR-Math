@@ -10,7 +10,94 @@ Interpreter::~Interpreter()
 
 }
 
+void Interpreter::InterpretUsingAverageImages(string FilePath)
+{
+	/*
+	* FilePath: The absolute path of the input file to be interpreted
+	*/
 
+	IplImage* InputImage = cvLoadImage( FilePath.c_str() );
+
+	InputImage = PrepareImage(InputImage);
+
+	InputImage = Threshold(InputImage);
+
+	AllSymbols = ExtractAllSymbolBlobs(InputImage);
+
+	path SymbolFilePath("./symbols/");
+
+	map<string, IplImage* > AllReferenceSymbols;
+
+	directory_iterator EndIt; // default constructor is an end iterator
+
+	// Load all the reference symbols
+	for (directory_iterator FileIterator(SymbolFilePath); FileIterator != EndIt; ++FileIterator)
+	{
+		string Key = FileIterator->path().stem().c_str();
+		AllReferenceSymbols[ Key ] = cvLoadImage( FileIterator->path().c_str() );
+	
+		IplImage* Destination = cvCreateImage(cvSize(AllReferenceSymbols[ Key ]->width, AllReferenceSymbols[ Key ]->height), IPL_DEPTH_8U, 1);
+		cvCvtColor(AllReferenceSymbols[ Key ], Destination, CV_RGB2GRAY);
+		AllReferenceSymbols[ Key ] = Destination;
+
+		cout << "Symbol \"" << FileIterator->path().stem().c_str() << "\" loaded." << endl;
+	}
+
+	// Compare
+	for (vector<IplImage*>::iterator SymbolIter = AllSymbols.begin(); SymbolIter != AllSymbols.end(); ++SymbolIter)
+	{
+		uchar* PixelData = (uchar*)(*SymbolIter)->imageData;
+		const int Width = (*SymbolIter)->width;
+		const int Height = (*SymbolIter)->height;
+		const int Step = (*SymbolIter)->widthStep;
+		const int Depth = (*SymbolIter)->depth;
+		const int Channels = (*SymbolIter)->nChannels;
+
+		if (Width <= 10 || Height <= 10)
+		{
+			// If it's this small, just discard it as useless - this is a hack, we'll come up with a better way later
+			// We may have to base this on the region size relative to the image size - so we don't discard decimals,
+			// multiplication signs, etc
+			continue;
+		}
+
+		map<string, double> ConfidenceMap;
+
+		for (map<string, IplImage*>::iterator RefSymbolIter = AllReferenceSymbols.begin(); RefSymbolIter != AllReferenceSymbols.end(); ++RefSymbolIter)
+		{
+			IplImage* ResizedReference = cvCreateImage(cvSize(Width, Height), Depth, Channels);
+			cvResize(RefSymbolIter->second, ResizedReference, CV_INTER_AREA);
+
+			double TotalPixelsAnalyzed = 0.0;
+			double MatchingPixels = 0.0;
+
+			const uchar* ReferencePixelData = (uchar*)ResizedReference->imageData;
+
+			for (int i = 0; i < Height; i++)
+			{
+				for (int j = 0; j < Width; j++)
+				{
+					if (PixelData[i * Step + j] == 255)
+					{
+						// Found a white pixel in the original image
+						TotalPixelsAnalyzed += 1.0;
+
+						// If the same pixel on the resized reference image is white
+						if (ReferencePixelData[i * Step + j] == 255)
+						{
+							MatchingPixels += 1.0;
+						}
+					}
+				}
+			}
+			
+			ConfidenceMap[ RefSymbolIter->first ] = MatchingPixels / TotalPixelsAnalyzed * 100;
+			cout << ConfidenceMap[ RefSymbolIter->first ] << "% chance." << endl;
+			//cvRelease(&ResizedReference);
+		}
+	}
+	SaveAllSymbols();
+}
 
 void Interpreter::Interpret(string FilePath)
 {

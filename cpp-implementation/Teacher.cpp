@@ -82,7 +82,7 @@ void Teacher::Learn()
 			}
 
 			BuildPointCloudFile(PixelAppearanceRate, (SymbolDirectory).c_str(), TotalImagesInDirectory);
-			BuildAverageImage(PixelAppearanceRate, (OutputDirectory / "Average.png").c_str(), TotalImagesInDirectory);
+			BuildAverageImage(PixelAppearanceRate, (SymbolDirectory).c_str(), TotalImagesInDirectory);
 		}
 	}
 }
@@ -133,7 +133,7 @@ void Teacher::BuildAverageImage(vector< vector<int> >& PixelAppearanceRate, stri
 	}
 
 	cout << "Average is saved at " << FilePath.c_str() << endl;
-	cvSaveImage(FilePath.c_str(), Destination);
+	cvSaveImage(string("./symbols/" + FilePath + ".png").c_str(), Destination);
 	cvReleaseImage(&Destination);
 }
 

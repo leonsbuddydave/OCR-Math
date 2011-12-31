@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	{
 		cout << "Interpreting input image." << endl;
 		Interpreter interpreter;
-		interpreter.Interpret(InterpretFilepath);
+		interpreter.InterpretUsingAverageImages(InterpretFilepath);
 	}
 	else
 	{
